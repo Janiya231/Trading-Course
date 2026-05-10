@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading Recording Manager</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+    min-height:100vh;
+}
+
+header{
+    background:#111827;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.4);
+}
+
+header h1{
+    color:#38bdf8;
+    font-size:32px;
+}
+
+.container{
+    width:90%;
+    max-width:1300px;
+    margin:30px auto;
+}
+
+.search-box{
+    margin-bottom:25px;
+}
+
+.search-box input{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#1e293b;
+    color:white;
+    font-size:16px;
+}
+
+.days-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:20px;
+}
+
+.day-card{
+    background:#1e293b;
+    border:1px solid #334155;
+    border-radius:18px;
+    padding:20px;
+    transition:0.3s;
+}
+
+.day-card:hover{
+    transform:translateY(-5px);
+    border-color:#38bdf8;
+}
+
+.day-title{
+    font-size:24px;
+    color:#38bdf8;
+    margin-bottom:15px;
+}
+
+.record-btn{
+    display:block;
+    text-decoration:none;
+    background:#334155;
+    color:white;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:10px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.record-btn:hover{
+    background:#38bdf8;
+    color:black;
+}
+
+.empty{
+    opacity:0.5;
+    text-align:center;
+    padding:10px;
+}
+
+footer{
+    margin-top:40px;
+    padding:20px;
+    text-align:center;
+    color:#94a3b8;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <br>
+    <h1>Trading Recording Manager</h1>
+</header>
+
+<div class="container">
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search Day...">
+    </div>
+
+    <div class="days-grid" id="daysGrid"></div>
+
+</div>
+
+<footer>
+    
+</footer>
+
+<script>
+
+const recordings = {
+
+1: [
+{
+title:"Day 01 Recording",
+link:"https://youtu.be/27mF0SpjkqQ?si=B_UF36BPQiLQy0wa"
+}
+],
+
+2: [
+{
+title:"Day 02 Recording",
+link:"https://youtu.be/sy-VjJ5XU0o?si=n8tvuTVRmS_TBcf-"
+}
+],
+
+3: [
+{
+title:"Day 03 Recording",
+link:"https://youtu.be/UnNoaSptHsI?si=vZHW2Tu2ZlXc1hfo"
+}
+],
+
+4: [
+{
+title:"Day 04 Recording",
+link:"https://youtu.be/OH0iZr2qq5o?si=D7xeTT4HljlZBR5N"
+}
+],
+
+5: [
+{
+title:"Day 05 Recording",
+link:"https://youtu.be/z-6WT8LTo_8?si=5udAOTQKJyjdUYtF"
+}
+],
+
+6: [
+{
+title:"Day 06 Recording",
+link:"https://youtu.be/X7aJNvsKo9w?si=H63w-W6yHMsTDO6G"
+}
+],
+
+7: [
+{
+title:"Day 07 Recording",
+link:"https://youtu.be/DJGtpTKuIXk?si=ZxH9nXLr-XNxvJXJ"
+}
+],
+
+8: [
+{
+title:"Day 08 Recording",
+link:"https://youtu.be/zc_RqKJeqxI?si=F7RVIeHyy2PHuETd"
+}
+],
+
+9: [
+{
+title:"Day 09 Recording",
+link:"https://youtu.be/RatadViXf9w?si=YnZ4qYXhC-OeN-v-"
+}
+],
+
+10: [
+{
+title:"Day 10 Recording",
+link:"https://youtu.be/uhAMKpWvu4U?si=Kl6ykBm8bAgkeXfs"
+}
+],
+
+11: [
+{
+title:"Day 11 Recording",
+link:"https://youtu.be/QzQT0V4Sk04?si=lFm00cU87SOjx7-z"
+}
+],
+
+12: [
+{
+title:"Day 12 Recording",
+link:"https://youtu.be/DPX2GyzoK-8?si=o2tLvObXyngCzkRI"
+}
+],
+
+13: [],
+14: [],
+15: [],
+16: [],
+17: [],
+18: [],
+19: [],
+20: [],
+21: [],
+22: [],
+23: [],
+24: [],
+25: [],
+26: [],
+27: [],
+28: [],
+29: [],
+30: []
+
+};
+
+const daysGrid = document.getElementById("daysGrid");
+
+function renderCards(filter=""){
+
+    daysGrid.innerHTML = "";
+
+    for(let day = 1; day <= 30; day++){
+
+        if(!(`Day ${day}`.toLowerCase().includes(filter.toLowerCase()))){
+            continue;
+        }
+
+        const card = document.createElement("div");
+        card.className = "day-card";
+
+        let html = "";
+
+        if(recordings[day].length > 0){
+
+            recordings[day].forEach(record => {
+
+                html += `
+                    <a class="record-btn" href="${record.link}" target="_blank">
+                        ▶ ${record.title}
+                    </a>
+                `;
+
+            });
+
+        } else {
+
+            html = `
+                <div class="empty">
+                    No Recording Yet
+                </div>
+            `;
+
+        }
+
+        card.innerHTML = `
+            <div class="day-title">Day ${day}</div>
+            ${html}
+        `;
+
+        daysGrid.appendChild(card);
+
+    }
+
+}
+
+renderCards();
+
+document.getElementById("searchInput")
+.addEventListener("input", function(){
+
+    renderCards(this.value);
+
+});
+
+</script>
+
+</body>
+</html>
