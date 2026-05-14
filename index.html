@@ -38,8 +38,15 @@ header h1{
     margin:30px auto;
 }
 
-.search-box{
+.top-bar{
+    display:flex;
+    gap:15px;
     margin-bottom:25px;
+    flex-wrap:wrap;
+}
+
+.search-box{
+    flex:1;
 }
 
 .search-box input{
@@ -50,6 +57,51 @@ header h1{
     background:#1e293b;
     color:white;
     font-size:16px;
+}
+
+.resource-btn{
+    background:#38bdf8;
+    color:black;
+    border:none;
+    padding:14px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.resource-btn:hover{
+    opacity:0.85;
+}
+
+.resources-panel{
+    display:none;
+    background:#111827;
+    border:1px solid #334155;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:25px;
+}
+
+.resources-panel h2{
+    color:#38bdf8;
+    margin-bottom:15px;
+}
+
+.resource-link{
+    display:block;
+    text-decoration:none;
+    background:#1e293b;
+    color:white;
+    padding:14px;
+    border-radius:12px;
+    margin-bottom:12px;
+    transition:0.3s;
+}
+
+.resource-link:hover{
+    background:#38bdf8;
+    color:black;
 }
 
 .days-grid{
@@ -119,8 +171,31 @@ footer{
 
 <div class="container">
 
-    <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Search Day...">
+    <div class="top-bar">
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search Day...">
+        </div>
+
+        <button class="resource-btn" onclick="toggleResources()">
+            📚 Resources
+        </button>
+
+    </div>
+
+    <!-- Resources Section -->
+    <div class="resources-panel" id="resourcesPanel">
+
+        <h2>Trading Resources</h2>
+
+        <a class="resource-link" href="1 (1).pdf" target="_blank">
+            📈 CANDLESTICK PATTERNS - NEUTRAL BASIC PATTERNS
+        </a>
+
+        <a class="resource-link" href="3 (1) (2).pdf" target="_blank">
+            💹 TRADING CANDLESTICK
+        </a>
+
     </div>
 
     <div class="days-grid" id="daysGrid"></div>
@@ -128,7 +203,7 @@ footer{
 </div>
 
 <footer>
-    
+
 </footer>
 
 <script>
@@ -225,18 +300,21 @@ title:"Day 13 Recording",
 link:"https://youtu.be/JZ64Kg6914o?si=jJaXiIc0asj2jfAB"
 }
 ],
+
 14: [
 {
 title:"Day 14 Recording",
 link:"https://youtu.be/AtOk04kL9VI?si=rmskGV9cfW9sMPtI"
 }
 ],
+
 15: [
 {
 title:"Day 15 Recording",
 link:"https://youtu.be/HsQ6nM8VJME?si=hEOeXjlFgt-LxG2f"
 }
 ],
+
 16: [],
 17: [],
 18: [],
@@ -305,6 +383,18 @@ function renderCards(filter=""){
 
 }
 
+function toggleResources(){
+
+    const panel = document.getElementById("resourcesPanel");
+
+    if(panel.style.display === "block"){
+        panel.style.display = "none";
+    } else {
+        panel.style.display = "block";
+    }
+
+}
+
 renderCards();
 
 document.getElementById("searchInput")
@@ -317,4 +407,4 @@ document.getElementById("searchInput")
 </script>
 
 </body>
-</html>
+</html> 
