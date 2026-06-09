@@ -11,294 +11,157 @@
 
 <header>
     <br>
-    <marquee behavior="" direction=""></marquee><h1>Trading Recording Manager</h1>
+    <h1>Trading Recording Manager</h1>
 </header>
 
 <div class="container">
 
     <div class="top-bar">
-
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Search Day...">
         </div>
-
         <button class="resource-btn" onclick="toggleResources()">
             📚 Resources
         </button>
-
     </div>
 
-    <!-- Resources Section -->
     <div class="resources-panel" id="resourcesPanel">
-
         <h2>Trading Resources</h2>
-
-        <a class="resource-link" href="1 (1).pdf" target="_blank">
-            📈 CANDLESTICK PATTERNS - NEUTRAL BASIC PATTERNS
-        </a>
-
-        <a class="resource-link" href="3 (1) (2).pdf" target="_blank">
-            💹 TRADING CANDLESTICK
-        </a>
-       
-        <a class="resource-link" href="1.jpeg" target="_blank">
-            📉 CONTINUATION CHART PATTERNS
-        </a>
-        
-        <a class="resource-link" href="2.jpeg" target="_blank">
-            📊 BILATERAL CHART PATTERNS
-        </a>
-
-        <a class="resource-link" href="3.jpeg" target="_blank">
-            💰 CHANNEL CHART PATTERNS
-        </a>
-
-        <a class="resource-link" href="4.jpeg" target="_blank">
-            🎯 REVERSAL CHART PATTERNS
-        </a>
-        
-        <a class="resource-link" href="Divergences.jpeg" target="_blank">
-            📈 DIVERGENCES
-        </a>
-        
-        <a class="resource-link" href="Fibonacci.html" target="_blank">
-            💹 FIBONACCI
-        </a>    
-
+        <a class="resource-link" href="1 (1).pdf" target="_blank">📈 CANDLESTICK PATTERNS - NEUTRAL BASIC PATTERNS</a>
+        <a class="resource-link" href="3 (1) (2).pdf" target="_blank">💹 TRADING CANDLESTICK</a>
+        <a class="resource-link" href="1.jpeg" target="_blank">📉 CONTINUATION CHART PATTERNS</a>
+        <a class="resource-link" href="2.jpeg" target="_blank">📊 BILATERAL CHART PATTERNS</a>
+        <a class="resource-link" href="3.jpeg" target="_blank">💰 CHANNEL CHART PATTERNS</a>
+        <a class="resource-link" href="4.jpeg" target="_blank">🎯 REVERSAL CHART PATTERNS</a>
+        <a class="resource-link" href="Divergences.jpeg" target="_blank">📈 DIVERGENCES</a>
+        <a class="resource-link" href="Fibonacci.html" target="_blank">💹 FIBONACCI</a>    
     </div>
 
     <div class="days-grid" id="daysGrid"></div>
 
 </div>
 
-<footer>
-
-</footer>
+<footer></footer>
 
 <script>
-
 const recordings = {
-
-1: [
-{
-title:"Day 01 Recording",
-link:"https://youtu.be/27mF0SpjkqQ?si=B_UF36BPQiLQy0wa"
-}
-],
-
-2: [
-{
-title:"Day 02 Recording",
-link:"https://youtu.be/sy-VjJ5XU0o?si=n8tvuTVRmS_TBcf-"
-}
-],
-
-3: [
-{
-title:"Day 03 Recording",
-link:"https://youtu.be/UnNoaSptHsI?si=vZHW2Tu2ZlXc1hfo"
-}
-],
-
-4: [
-{
-title:"Day 04 Recording",
-link:"https://youtu.be/OH0iZr2qq5o?si=D7xeTT4HljlZBR5N"
-}
-],
-
-5: [
-{
-title:"Day 05 Recording",
-link:"https://youtu.be/z-6WT8LTo_8?si=5udAOTQKJyjdUYtF"
-}
-],
-
-6: [
-{
-title:"Day 06 Recording",
-link:"https://youtu.be/X7aJNvsKo9w?si=H63w-W6yHMsTDO6G"
-}
-],
-
-7: [
-{
-title:"Day 07 Recording",
-link:"https://youtu.be/DJGtpTKuIXk?si=ZxH9nXLr-XNxvJXJ"
-}
-],
-
-8: [
-{
-title:"Day 08 Recording",
-link:"https://youtu.be/zc_RqKJeqxI?si=F7RVIeHyy2PHuETd"
-}
-],
-
-9: [
-{
-title:"Day 09 Recording",
-link:"https://youtu.be/RatadViXf9w?si=YnZ4qYXhC-OeN-v-"
-}
-],
-
-10: [
-{
-title:"Day 10 Recording",
-link:"https://youtu.be/uhAMKpWvu4U?si=Kl6ykBm8bAgkeXfs"
-}
-],
-
-11: [
-{
-title:"Day 11 Recording",
-link:"https://youtu.be/QzQT0V4Sk04?si=lFm00cU87SOjx7-z"
-}
-],
-
-12: [
-{
-title:"Day 12 Recording",
-link:"https://youtu.be/DPX2GyzoK-8?si=o2tLvObXyngCzkRI"
-}
-],
-
-13: [
-{
-title:"Day 13 Recording",
-link:"https://youtu.be/JZ64Kg6914o?si=jJaXiIc0asj2jfAB"
-}
-],
-
-14: [
-{
-title:"Day 14 Recording",
-link:"https://youtu.be/AtOk04kL9VI?si=rmskGV9cfW9sMPtI"
-}
-],
-
-15: [
-{
-title:"Day 15 Recording",
-link:"https://youtu.be/HsQ6nM8VJME?si=hEOeXjlFgt-LxG2f"
-}
-],
-
-16: [
-{
-title:"Day 16 Recording",
-link:"https://youtu.be/tW6C83KKZYM?si=k97epWZclzXWjH-x"
-}
-],
-17: [
-{
-title:"Day 17 Recording",
-link:"https://youtu.be/U2HrEhWFoJc?si=9no5hEizIzLuYXSR"
-}
-],
-18: [
-{
-title:"Day 18 Recording",
-link:"https://youtu.be/0DNq_BDzqv4?si=k-z0JiHklljaXkNS"
-}
-],
-19: [
-{
-title:"Day 19 Recording",
-link:"https://youtu.be/Nk4cSc5jRo0?si=pgHtQZdSoIyaLrnw"
-}
-],
-20: [
-{
-title:"Day 20 Recording",
-link:"https://youtu.be/08WAKsbIkyI?si=ppaRR6c68ZYFrfCF"
-}
-],
-21: [],
-22: [],
-23: [],
-24: [],
-25: [],
-26: [],
-27: [],
-28: [],
-29: [],
-30: []
-
+1: [{ title:"Day 01 Recording", link:"https://youtu.be/27mF0SpjkqQ?si=B_UF36BPQiLQy0wa" }],
+2: [{ title:"Day 02 Recording", link:"https://youtu.be/sy-VjJ5XU0o?si=n8tvuTVRmS_TBcf-" }],
+3: [{ title:"Day 03 Recording", link:"https://youtu.be/UnNoaSptHsI?si=vZHW2Tu2ZlXc1hfo" }],
+4: [{ title:"Day 04 Recording", link:"https://youtu.be/OH0iZr2qq5o?si=D7xeTT4HljlZBR5N" }],
+5: [{ title:"Day 05 Recording", link:"https://youtu.be/z-6WT8LTo_8?si=5udAOTQKJyjdUYtF" }],
+6: [{ title:"Day 06 Recording", link:"https://youtu.be/X7aJNvsKo9w?si=H63w-W6yHMsTDO6G" }],
+7: [{ title:"Day 07 Recording", link:"https://youtu.be/DJGtpTKuIXk?si=ZxH9nXLr-XNxvJXJ" }],
+8: [{ title:"Day 08 Recording", link:"https://youtu.be/zc_RqKJeqxI?si=F7RVIeHyy2PHuETd" }],
+9: [{ title:"Day 09 Recording", link:"https://youtu.be/RatadViXf9w?si=YnZ4qYXhC-OeN-v-" }],
+10: [{ title:"Day 10 Recording", link:"https://youtu.be/uhAMKpWvu4U?si=Kl6ykBm8bAgkeXfs" }],
+11: [{ title:"Day 11 Recording", link:"https://youtu.be/QzQT0V4Sk04?si=lFm00cU87SOjx7-z" }],
+12: [{ title:"Day 12 Recording", link:"https://youtu.be/DPX2GyzoK-8?si=o2tLvObXyngCzkRI" }],
+13: [{ title:"Day 13 Recording", link:"https://youtu.be/JZ64Kg6914o?si=jJaXiIc0asj2jfAB" }],
+14: [{ title:"Day 14 Recording", link:"https://youtu.be/AtOk04kL9VI?si=rmskGV9cfW9sMPtI" }],
+15: [{ title:"Day 15 Recording", link:"https://youtu.be/HsQ6nM8VJME?si=hEOeXjlFgt-LxG2f" }],
+16: [{ title:"Day 16 Recording", link:"https://youtu.be/tW6C83KKZYM?si=k97epWZclzXWjH-x" }],
+17: [{ title:"Day 17 Recording", link:"https://youtu.be/U2HrEhWFoJc?si=9no5hEizIzLuYXSR" }],
+18: [{ title:"Day 18 Recording", link:"https://youtu.be/0DNq_BDzqv4?si=k-z0JiHklljaXkNS" }],
+19: [{ title:"Day 19 Recording", link:"https://youtu.be/Nk4cSc5jRo0?si=pgHtQZdSoIyaLrnw" }],
+20: [{ title:"Day 20 Recording", link:"https://youtu.be/08WAKsbIkyI?si=ppaRR6c68ZYFrfCF" }],
+21: [{ title:"Day 21 Recording", link:"https://youtu.be/NL0rXP9yZyo?si=-eRkm2YYKm-bUh8l" }],
+22: [{ title:"Day 22 Recording", link:"https://youtu.be/qGcoZ1HUTy4?si=_v6Q5IZyKsNQRxuW" }],
+23: [{ title:"Day 23 Recording", link:"https://youtu.be/6rXkeCpztXA?si=QC4uXrRvhJMK87RO" }],
+24: [{ title:"Day 24 Recording", link:"https://youtu.be/tCK7p75ILJs?si=YQrZXQLwyAMRp0O_" }],
+25: [{ title:"Day 25 Recording", link:"https://youtu.be/dOivCqlWPyo?si=G7Nxh0MvURQFlpsj" }],
+26: [{ title:"Day 26 Recording", link:"https://youtu.be/UmMKY8EZnvU?si=mGyYStnN-4sEMMeB" }],
+27: [{ title:"Day 27 Recording", link:"https://youtu.be/ImThXHjKJns?si=kya7jI0E7VRKEYCg" }],
+28: [{ title:"Day 28 Recording", link:"#" }],
+29: [{ title:"Day 29 Recording", link:"#" }],
+30: [{ title:"Day 30 Recording", link:"#" }],
+31: [{ title:"Day 31 Recording", link:"#" }],
+32: [{ title:"Day 32 Recording", link:"#" }],
+33: [{ title:"Day 33 Recording", link:"#" }],
+34: [{ title:"Day 34 Recording", link:"#" }],
+35: [{ title:"Day 35 Recording", link:"#" }],
+36: [{ title:"Day 36 Recording", link:"#" }],
+37: [{ title:"Day 37 Recording", link:"#" }],
+38: [{ title:"Day 38 Recording", link:"#" }],
+39: [{ title:"Day 39 Recording", link:"#" }],
+40: [{ title:"Day 40 Recording", link:"#" }],
+41: [{ title:"Day 41 Recording", link:"#" }],
+42: [{ title:"Day 42 Recording", link:"#" }],
+43: [{ title:"Day 43 Recording", link:"#" }],
+44: [{ title:"Day 44 Recording", link:"#" }],
+45: [{ title:"Day 45 Recording", link:"#" }],
+46: [{ title:"Day 46 Recording", link:"#" }],
+47: [{ title:"Day 47 Recording", link:"#" }],
+48: [{ title:"Day 48 Recording", link:"#" }],
+49: [{ title:"Day 49 Recording", link:"#" }],
+50: [{ title:"Day 50 Recording", link:"#" }],
+51: [{ title:"Day 51 Recording", link:"#" }],
+52: [{ title:"Day 52 Recording", link:"#" }],
+53: [{ title:"Day 53 Recording", link:"#" }],
+54: [{ title:"Day 54 Recording", link:"#" }],
+55: [{ title:"Day 55 Recording", link:"#" }],
+56: [{ title:"Day 56 Recording", link:"#" }],
+57: [{ title:"Day 57 Recording", link:"#" }],
+58: [{ title:"Day 58 Recording", link:"#" }],
+59: [{ title:"Day 59 Recording", link:"#" }],
+60: [{ title:"Day 60 Recording", link:"#" }]
 };
 
 const daysGrid = document.getElementById("daysGrid");
 
 function renderCards(filter=""){
-
     daysGrid.innerHTML = "";
 
-    for(let day = 1; day <= 30; day++){
-
+    for(let day = 1; day <= 60; day++){
         if(!(`Day ${day}`.toLowerCase().includes(filter.toLowerCase()))){
             continue;
         }
 
         const card = document.createElement("div");
         card.className = "day-card";
-
         let html = "";
 
-        if(recordings[day].length > 0){
-
+        if(recordings[day] && recordings[day].length > 0 && recordings[day][0].title !== ""){
             recordings[day].forEach(record => {
-
                 html += `
                     <a class="record-btn" href="${record.link}" target="_blank">
                         ▶ ${record.title}
                     </a>
                 `;
-
             });
-
         } else {
-
             html = `
                 <div class="empty">
                     No Recording Yet
                 </div>
             `;
-
         }
 
         card.innerHTML = `
             <div class="day-title">Day ${day}</div>
             ${html}
         `;
-
         daysGrid.appendChild(card);
-
     }
-
 }
 
 function toggleResources(){
-
     const panel = document.getElementById("resourcesPanel");
-
     if(panel.style.display === "block"){
         panel.style.display = "none";
     } else {
         panel.style.display = "block";
     }
-
 }
 
+// Initial Render
 renderCards();
 
-document.getElementById("searchInput")
-.addEventListener("input", function(){
-
+// Search Box Listener
+document.getElementById("searchInput").addEventListener("input", function(){
     renderCards(this.value);
-
 });
-
 </script>
 
 </body>
-</html> 
+</html>
