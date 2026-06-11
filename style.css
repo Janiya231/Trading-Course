@@ -81,6 +81,13 @@ header h1{
     margin-bottom:15px;
 }
 
+.links{
+    color: white;
+    text-decoration: none;
+    font-size: larger;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    width: 100%;
+}
 .resource-link{
     display:block;
     text-decoration:none;
