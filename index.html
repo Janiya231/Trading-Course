@@ -4,29 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trading Recording Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header>
-    <br>
     <h1>Trading Recording Manager</h1>
+    <p class="sub" id="progress"></p>
 </header>
-
 
 <div class="container">
 
     <div class="top-bar">
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Search Day...">
+            <input type="text" id="searchInput" placeholder="Search Day..." aria-label="Search day">
         </div>
-        <button class="resource-btn" onclick="toggleResources()">
+        <button class="resource-btn" onclick="toggleResources()" aria-expanded="false" aria-controls="resourcesPanel">
             📚 Resources
         </button>
     </div>
 
-    <div class="resources-panel" id="resourcesPanel">
+    <div class="resources-panel" id="resourcesPanel"><div class="panel-inner"><div class="panel-body">
         <h2>Trading Resources</h2>
         <a class="resource-link" href="1 (1).pdf" target="_blank">📈 CANDLESTICK PATTERNS - NEUTRAL BASIC PATTERNS</a>
         <a class="resource-link" href="cp.html" target="_blank">💹 TRADING CANDLESTICK</a>
@@ -35,10 +36,12 @@
         <a class="resource-link" href="3.jpeg" target="_blank">💰 CHANNEL CHART PATTERNS</a>
         <a class="resource-link" href="4.jpeg" target="_blank">🎯 REVERSAL CHART PATTERNS</a>
         <a class="resource-link" href="Divergences.jpeg" target="_blank">📈 DIVERGENCES</a>
-        <a class="resource-link" href="Fibonacci.html" target="_blank">💹 FIBONACCI</a>    
-    </div>
-    <hr><br>
-    <a href="https://cointelegraph.com/" class="links" target="_blank">📰   Trading - fundamental Analysis - News Website</a><br><br><hr><div class="days-grid" id="daysGrid"></div>
+        <a class="resource-link" href="Fibonacci.html" target="_blank">💹 FIBONACCI</a>
+    </div></div></div>
+
+    <a href="https://cointelegraph.com/" class="links" target="_blank" rel="noopener">📰 Trading - fundamental Analysis - News Website</a>
+
+    <div class="days-grid" id="daysGrid"></div>
 
 </div>
 
@@ -108,58 +111,56 @@ const recordings = {
 };
 
 const daysGrid = document.getElementById("daysGrid");
+const hasRec = d => recordings[d] && recordings[d].length > 0 && recordings[d][0].title !== "";
 
 function renderCards(filter=""){
     daysGrid.innerHTML = "";
-
     for(let day = 1; day <= 60; day++){
-        if(!(`Day ${day}`.toLowerCase().includes(filter.toLowerCase()))){
-            continue;
-        }
-
+        if(!(`Day ${day}`.toLowerCase().includes(filter.toLowerCase()))) continue;
+        const done = hasRec(day);
         const card = document.createElement("div");
-        card.className = "day-card";
-        let html = "";
-
-        if(recordings[day] && recordings[day].length > 0 && recordings[day][0].title !== ""){
-            recordings[day].forEach(record => {
-                html += `
-                    <a class="record-btn" href="${record.link}" target="_blank">
-                        ▶ ${record.title}
-                    </a>
-                `;
-            });
-        } else {
-            html = `
-                <div class="empty">
-                    No Recording Yet
-                </div>
-            `;
-        }
-
-        card.innerHTML = `
-            <div class="day-title">Day ${day}</div>
-            ${html}
-        `;
+        card.className = "day-card" + (done ? " has-rec" : "");
+        const body = done
+            ? recordings[day].map(r => `<a class="record-btn" href="${r.link}" target="_blank" rel="noopener">▶ ${r.title}</a>`).join("")
+            : `<div class="empty">No Recording Yet</div>`;
+        card.innerHTML = `<div class="day-title">Day ${day}</div>${body}`;
         daysGrid.appendChild(card);
     }
 }
 
 function toggleResources(){
-    const panel = document.getElementById("resourcesPanel");
-    if(panel.style.display === "block"){
-        panel.style.display = "none";
-    } else {
-        panel.style.display = "block";
-    }
+    const open = document.getElementById("resourcesPanel").classList.toggle("open");
+    document.querySelector(".resource-btn").setAttribute("aria-expanded", open);
 }
 
-// Initial Render
 renderCards();
+document.getElementById("progress").textContent =
+    `${Array.from({length:60},(_,i)=>i+1).filter(hasRec).length} of 60 days recorded`;
 
-// Search Box Listener
 document.getElementById("searchInput").addEventListener("input", function(){
     renderCards(this.value);
+});
+
+// Cursor spotlight + 3D tilt (mouse only, skipped for reduced motion)
+const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.addEventListener("pointermove", e => {
+    if(e.pointerType !== "mouse") return;
+    const el = e.target.closest(".day-card, .resource-link, .links");
+    if(!el) return;
+    const r = el.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    el.style.setProperty("--mx", x + "px");
+    el.style.setProperty("--my", y + "px");
+    if(el.classList.contains("day-card") && !calm){
+        el.style.setProperty("--ry", ((x / r.width) - .5) * 14 + "deg");
+        el.style.setProperty("--rx", (.5 - (y / r.height)) * 14 + "deg");
+    }
+});
+document.addEventListener("pointerout", e => {
+    const el = e.target.closest(".day-card");
+    if(el && !el.contains(e.relatedTarget)){
+        el.style.removeProperty("--rx");
+        el.style.removeProperty("--ry");
+    }
 });
 </script>
 
